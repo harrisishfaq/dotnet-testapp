@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Add New Student</h1>
+    <form method="post" asp-controller="Students" asp-action="Create">
+        <div class="form-group">
+            <label>FullName</label>
+            <input type="text" class="form-control" name="fullname" placeholder="Enter Full Name">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter Student Email">
+        </div>
+        
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" class="form-control" name="age" placeholder="Enter Student Age">
+        </div>
+        
+        <br/>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>

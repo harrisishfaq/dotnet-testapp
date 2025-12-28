@@ -1,0 +1,46 @@
+@model List<Student>
+@{
+    var i = 0;
+}
+<h1>Student Management (@Model.Count) </h1>
+<br/><br/><br/>
+
+<div style="text-align: right">
+    <a class="btn btn-success" asp-controller="Students" asp-action="New">Add Student</a>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Student Id</th>
+        <th scope="col">FullName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Age</th>
+        <th scope="col">Courses</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var student in Model)
+    {
+        i++;
+        
+        <tr>
+            <th scope="row">@i</th>
+            <td>@student.Id</td>
+            <td>@student.FullName</td>
+            <td>@student.Email</td>
+            <td>@student.Age</td>
+            <td>2</td>
+            <td>
+                <a class="btn btn-dark" asp-controller="Students" asp-action="Show" asp-route-id="@student.Id">Show</a>
+                <a class="btn btn-primary" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                <a class="btn btn-danger" asp-controller="Students" asp-action="Delete" asp-route-id="@student.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    <tr>
+
+    </tbody>
+</table>
