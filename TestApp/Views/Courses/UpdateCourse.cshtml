@@ -1,0 +1,22 @@
+@model Course
+
+<h2>Edit Course</h2>
+
+
+<form method="post" asp-controller="Courses" asp-action="Edit">
+    
+    <input type="hidden" asp-for="Id" />
+    
+    <div class="form-group">
+        <label>Course Title</label>
+        <input type="text" class="form-control" placeholder="Enter title" asp-for="Title">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" placeholder="Write description" asp-for="Description">
+    </div>
+    
+    <br/>
+  
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

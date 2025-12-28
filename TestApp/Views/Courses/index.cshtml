@@ -1,0 +1,35 @@
+@model List<Course>
+
+<h1>Course Management (@Model.Count) </h1>
+<br/><br/><br/>
+
+<div style="text-align: right">
+    <a class="btn btn-success" asp-controller="Courses" asp-action="AddCourse">Add Course</a>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var course in Model)
+    {
+        <tr>
+            <th scope="row">@course.Id</th>
+            <td>@course.Title</td>
+            <td>@course.Description</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
+                <a class="btn btn-danger" asp-controller="Courses" asp-action="Delete" asp-route-id="@course.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    <tr>
+    
+    </tbody>
+</table>
