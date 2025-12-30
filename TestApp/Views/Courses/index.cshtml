@@ -13,6 +13,7 @@
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
+        <th scope="col">Enrolled Students</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -23,6 +24,7 @@
             <th scope="row">@course.Id</th>
             <td>@course.Title</td>
             <td>@course.Description</td>
+            <td>@course.Students.Count</td>
             <td>
                 <a class="btn btn-primary" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
                 <a class="btn btn-danger" asp-controller="Courses" asp-action="Delete" asp-route-id="@course.Id">Delete</a>

@@ -8,4 +8,7 @@ public class Course
     public string Title { get; set; }
     [Required(ErrorMessage = "Description is required")]
     public string Description { get; set; }
+    
+    public ICollection<Student> Students { get; set; } = new List<Student>();
+
 }

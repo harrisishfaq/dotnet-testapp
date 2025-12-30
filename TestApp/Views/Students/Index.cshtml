@@ -9,6 +9,12 @@
     <a class="btn btn-success" asp-controller="Students" asp-action="New">Add Student</a>
 </div>
 
+@if (Model.Count == 0)
+{
+    <h3 style="text-align: center; margin-top: 100px;">No Students Available. Please add new students.</h3>
+    return;
+}
+
 <table class="table">
     <thead>
     <tr>
@@ -32,7 +38,7 @@
             <td>@student.FullName</td>
             <td>@student.Email</td>
             <td>@student.Age</td>
-            <td>2</td>
+            <td>@student.Courses.Count</td>
             <td>
                 <a class="btn btn-dark" asp-controller="Students" asp-action="Show" asp-route-id="@student.Id">Show</a>
                 <a class="btn btn-primary" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>

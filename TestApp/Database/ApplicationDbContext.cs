@@ -17,6 +17,7 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // DATA SEEDING
         modelBuilder.Entity<Course>().HasData(
             new Course { Id = 1, Title = "Calculus 101", Description = "Calculus description....." },
             new Course { Id = 2, Title = "English 201", Description = "English course description...." }
@@ -26,6 +27,13 @@ public class ApplicationDbContext : DbContext
             new Student { Id = 1, FullName = "Abcd", Email = "abcd@gmail.com.", Age = 20 },
             new Student { Id = 2, FullName = "Efgh", Email = "efgh@gmail.com.", Age = 21 }
         ); 
+        
+        // RELATIONSHIP DEFINED
+        modelBuilder.Entity<Student>()
+            .HasMany(s => s.Courses)
+            .WithMany(c => c.Students)
+            .UsingEntity(j => j.ToTable("StudentCourses"));
+        
     }
   
 }

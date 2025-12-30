@@ -15,6 +15,26 @@
             <input type="number" class="form-control" name="age" placeholder="Enter Student Age">
         </div>
         
+        <div class="mb-3">
+            <label class="form-label">Select Courses</label>
+
+            <div>
+                @foreach (SelectListItem course in ViewBag.Courses)
+                {
+                    <div class="form-check">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               name="selectedCourses"
+                               value="@course.Value"
+                               id="course_@course.Value" />
+                        <label class="form-check-label" for="course_@course.Value">@course.Text</label>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        
         <br/>
         <button type="submit" class="btn btn-primary">Add</button>
     </form>

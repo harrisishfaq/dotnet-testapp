@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TestApp.Database;
 using TestApp.Models;
 
@@ -30,8 +31,8 @@ public class CoursesController : Controller
     
     public IActionResult Index()
     {
-        List<Course> courses = _db.Courses.ToList();
-        ViewBag.Cate = _db.Courses.ToList();
+        var courses = _db.Courses.Include(c => c.Students).ToList();
+       // ViewBag.Cate = _db.Courses.ToList();
         return View(courses);
     }
     
@@ -121,7 +122,14 @@ public class CoursesController : Controller
             {
                 throw new Exception("Something went wrong. Course not found");
             }
-            
+
+            var has_enrolled_students = _db.Students.Where(s => s.Courses.Any(c => c.Id == objCourse.Id));
+
+            if (has_enrolled_students.Count() > 0)
+            {
+                throw new Exception("Something went wrong. Course is assigned to students");
+            }
+
             _db.Courses.Remove(objCourse);
             _db.SaveChanges();
             
@@ -131,7 +139,7 @@ public class CoursesController : Controller
         catch (Exception ex)
         {
             TempData["Error"] = ex.Message;
-            return RedirectToAction("UpdateCourse", new { id });
+            return RedirectToAction("Index", new { id });
         }
     }
 }
